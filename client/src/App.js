@@ -17,6 +17,7 @@ import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import bodybg from "./assets/images/bodybg.png"
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -41,7 +42,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
+        <div class="mainbody" style={{backgroundImage: `url(${bodybg})`, backgroundPosition:'left top'}}>
           <StoreProvider>
             <Nav />
             <Routes>

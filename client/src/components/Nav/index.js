@@ -1,9 +1,11 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import "./nav.css"
+import styled, { keyframes } from "styled-components"
+import halo from "../../assets/images/header.png"
 
 function Nav() {
-
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
@@ -40,18 +42,20 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
-        </Link>
-      </h1>
-
-      <nav>
+    <div>
+      <header style={{backgroundImage: `url(${halo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'left top' }}>
+        <br/>
+        <div className="headermain">
+          <Link to="/">
+            <img className="bitcoin" src="bitcoin.png" alt="bitcoin ico" />
+          </Link>
+          <div>Bitcoin Bootcamp Store</div>
+        </div>
+      </header>
+      <nav className="navbar">
         {showNavigation()}
       </nav>
-    </header>
+    </div>
   );
 }
 
