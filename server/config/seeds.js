@@ -5,11 +5,14 @@ db.once('open', async () => {
   await Category.deleteMany();
 
   const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
-    { name: 'Electronics' },
-    { name: 'Books' },
-    { name: 'Toys' }
+    { name: 'Kitkat' },
+    { name: 'Aero' },
+    { name: 'Reeses' },
+    { name: 'Smarties' },
+    { name: 'Mars' },
+    { name: 'Coffee Crisp' },
+    { name: 'Oh Henry!' },
+    { name: 'Awake' }
   ]);
 
   console.log('categories seeded');
@@ -18,111 +21,148 @@ db.once('open', async () => {
 
   const products = await Product.insertMany([
     {
-      name: 'Tin of Cookies',
+      name: 'Kitkat Original',
       description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
+        'Chocolate covered waffer bars. Original flavour.',
+      image: 'kitkat.jpg',
       category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
+      price: 200,
+      quantity: 5
     },
     {
-      name: 'Canned Coffee',
+      name: 'Kitkat Matcha',
       description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
+        'Chocolate covered waffer bars. Matcha flavour.',
+      image: 'kitkatmatcha.jpg',
       category: categories[0]._id,
-      price: 1.99,
-      quantity: 500
+      price: 200,
+      quantity: 2
     },
     {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
+      name: 'Kitkat White',
       description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 7.99,
-      quantity: 20
+        'Chocolate covered waffer bars. White chocolate flavour.',
+      image: 'kitkatwhite.jpg',
+      category: categories[0]._id,
+      price: 200,
+      quantity: 1
     },
     {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
+      name: 'Kitkat Chunky',
       description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
-      quantity: 50
+        'Chocolate covered waffer bars. Chunky version.',
+      image: 'kitkatchunky.jpg',
+      category: categories[0]._id,
+      price: 200,
+      quantity: 3
     },
     {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
+      name: 'Aero Original',
       description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      price: 14.99,
-      quantity: 100
+        'Creamy milk chocolate with a unique bubbly texture that collapses as the bar melts in your mouth. Original flavour.',
+      image: 'aero.jpg',
+      category: categories[1]._id,
+      price: 200,
+      quantity: 8
     },
     {
-      name: 'Camera',
+      name: 'Aero White',
+      description:
+        'Creamy milk chocolate with a unique bubbly texture that collapses as the bar melts in your mouth.',
+      image: 'aerowhite.jpg',
+      category: categories[1]._id,
+      price: 200,
+      quantity: 3
+    },
+    {
+      name: 'Reeses Original',
       category: categories[2]._id,
       description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30
+        'Milk chocolate cups filled with decadent peanut butter filling. Original flavour.',
+      image: 'reeses.jpg',
+      price: 250,
+      quantity: 3
     },
     {
-      name: 'Tablet',
+      name: 'Reeses Big Cup',
       category: categories[2]._id,
       description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30
+        'Milk chocolate cups filled with decadent peanut butter filling. Big cup version.',
+      image: 'reesesbigcup.jpg',
+      price: 300,
+      quantity: 1
     },
     {
-      name: 'Tales at Bedtime',
+      name: 'Smarties Original',
       category: categories[3]._id,
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
-      quantity: 100
+        'Colourful sugar-coated milk chocolate spheroids. Original flavour.',
+      image: 'smarties.jpg',
+      price: 150,
+      quantity: 5
     },
     {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000
-    },
-    {
-      name: 'Set of Plastic Horses',
+      name: 'Mars Original',
       category: categories[4]._id,
       description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000
+        'Candy bar filled with nougat and toasted almonds covered with a luxurious layer of milk chocolate. Original flavour.',
+      image: 'mars.jpg',
+      price: 200,
+      quantity: 2
     },
     {
-      name: 'Teddy Bear',
-      category: categories[4]._id,
+      name: 'Coffee Crisp Original',
+      category: categories[5]._id,
       description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
-      quantity: 100
+        'Candy bar consisting of alternating layers of vanilla wafer and foamed coffee-flavoured soft candy covered with a milk chocolate outer layer. Original flavour.',
+      image: 'coffeecrisp.jpg',
+      price: 150,
+      quantity: 6
     },
     {
-      name: 'Alphabet Blocks',
-      category: categories[4]._id,
+      name: 'Coffee Crisp Latte',
+      category: categories[5]._id,
       description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600
+        'Candy bar consisting of alternating layers of vanilla wafer and foamed coffee-flavoured soft candy covered with a milk chocolate outer layer. Latte flavour.',
+      image: 'coffeecrisplatte.png',
+      price: 150,
+      quantity: 2
+    },
+    {
+      name: 'Oh Henry! Original',
+      category: categories[6]._id,
+      description:
+        'Delicious combination of big crunchy peanuts, creamy caramel, chewy fudge, covered with a chocolaty coating. Original flavour.',
+      image: 'ohhenry.jpg',
+      price: 200,
+      quantity: 7
+    },
+    {
+      name: 'Oh Henry! Peanut Butter',
+      category: categories[6]._id,
+      description:
+        'Delicious combination of big crunchy peanuts, creamy caramel, chewy fudge, covered with a chocolaty coating. Peanut butter flavour.',
+      image: 'ohhenrypeanutbutter.jpg',
+      price: 200,
+      quantity: 7
+    },
+    {
+      name: 'Awake Original',
+      category: categories[7]._id,
+      description:
+        'Creamy milk chocolate alternative to coffee and energy drinks that is equivalent to 1/2 cups of coffee with no bitter aftertaste. Original flavour.',
+      image: 'awake.jpg',
+      price: 300,
+      quantity: 5
+    },
+    {
+      name: 'Awake Caramel',
+      category: categories[7]._id,
+      description:
+        'Creamy milk chocolate alternative to coffee and energy drinks that is equivalent to 1/2 cups of coffee with no bitter aftertaste. Caramel flavour.',
+      image: 'awakecaramel.jpg',
+      price: 300,
+      quantity: 3
     }
   ]);
 
