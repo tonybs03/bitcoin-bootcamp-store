@@ -10,6 +10,7 @@ function OrderHistory() {
 
   if (data) {
     user = data.user;
+    console.log(user)
   }
 
   return (
@@ -20,13 +21,18 @@ function OrderHistory() {
         {user ? (
           <>
             <h2>
-              Order History for {user.firstName} {user.lastName}
+              Welcome {user.firstName} {user.lastName}
             </h2>
+
+            <h3> Order History </h3>
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
-                <h3>
+                <h5>
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </h3>
+                </h5>
+                <div>
+                  <h4>You have: {user.bitcoin} ฿</h4>
+                </div>
                 <div className="flex-row">
                   {order.products.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">

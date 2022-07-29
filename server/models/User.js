@@ -28,7 +28,8 @@ const userSchema = new Schema({
   bitcoin: {
     type: Number,
     min: 0,
-    default: 0
+    default: 0,
+    trim: true
   },
   orders: [Order.schema]
 });
