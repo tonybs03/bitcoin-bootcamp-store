@@ -36,9 +36,9 @@ function OrderHistory() {
                 <h3>{user.firstName} {user.lastName} Info</h3>
                 <h4>You have: {user.bitcoin} ฿</h4>
 
-                <h4>You have purchased: {user.orders.forEach((order) => {
+                <h4>Total orders placed: {user.orders.forEach((order) => {
                   order.products.forEach(() => count++)
-                })} {count} chocolate so far</h4>
+                })} {count}</h4>
                 <h4>You are at: # on the leaderboard</h4>
               </div>
 
