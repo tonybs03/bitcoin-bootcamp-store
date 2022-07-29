@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nixie+One&family=Pacifico&display=swap");
 
 header {
   background-color: rgba(225, 105, 149, 0.3);
@@ -16,8 +16,10 @@ header {
 }
 
 .navbar {
-  line-height: 1.0;
-  border: 3px solid rgb(0, 0, 0, 0.0);
+  display: flex;
+  justify-content: right;
+  line-height: 0;
+  border: 3px solid rgb(0, 0, 0, 0);
   background-color: rgb(0, 0, 0, 0.7);
 }
 
@@ -30,6 +32,7 @@ header {
 }
 
 .bitcoin {
+  width: 25%;
   animation-name: turnOne;
   animation-duration: 6s;
   animation-iteration-count: infinite;
@@ -42,12 +45,9 @@ header {
   100% {opacity:1; background-position: 0%;}
 }
 
-.headermain div {
+.headermain p {
   line-height: 2.5;
-  display: flex;
-}
-
-.headermain div {
+  text-shadow: 0px 0px 5px rgba(226, 4, 107, 0.3);
   opacity: 0;
   animation-name: bgcolormorph;
   animation-duration: 6s;
@@ -63,4 +63,29 @@ header {
   font-size: 72px;
 }
 
+.navkeys {
+  font-family: 'Nixie One';
+  list-style: none;
+  margin-right: 100px;
+  display: flex;
+  justify-content: space-around;
+  width: 10%;
+}
 
+.navfonts {
+  font-size: 16px;
+  padding: 10px 13px;
+  color: rgb(246, 201, 217);
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.navfonts:hover{
+  font-size: 19px;
+  padding: 9px 13px;
+  text-decoration: none;
+  background-color: rgb(159, 114, 58);
+  color: rgb(69, 69, 69);
+}
