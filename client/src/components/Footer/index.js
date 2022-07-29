@@ -7,7 +7,7 @@ function Footer() {
     <div class='footermain'>
       <div class='footerbody'>
         <div class='footer-a'>
-          Desgined and Coded by Jordan, Kevin and Tony
+          Designed and Coded by Jordan, Kevin and Tony
         </div>
         <div class='footer-b'>
           2022@JKT
