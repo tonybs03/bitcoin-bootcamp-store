@@ -25,14 +25,14 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/signup">
+        <ul className="navkeys">
+          <li>
+            <Link to="/signup" className="navfonts">
               Signup
             </Link>
           </li>
-          <li className="mx-1">
-            <Link to="/login">
+          <li>
+            <Link to="/login" className="navfonts">
               Login
             </Link>
           </li>
@@ -43,18 +43,18 @@ function Nav() {
 
   return (
     <div>
+      <nav className="navbar">
+        {showNavigation()}
+      </nav>
       <header style={{backgroundImage: `url(${halo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'left top' }}>
         <br/>
         <div className="headermain">
           <Link to="/">
             <img className="bitcoin" src="bitcoin.png" alt="bitcoin ico" />
           </Link>
-          <div>Bitcoin Bootcamp Store</div>
+          <p>Bitcoin Bootcamp Store</p>
         </div>
       </header>
-      <nav className="navbar">
-        {showNavigation()}
-      </nav>
     </div>
   );
 }
