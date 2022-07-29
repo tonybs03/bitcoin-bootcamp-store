@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
+import { useMutation } from '@apollo/client';
+import {UPDATE_USER} from '../utils/mutations'
+
 function OrderHistory() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [addBitcoin, setAddBitcoin] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,10 +19,44 @@ function OrderHistory() {
 
   if (data) {
     user = data.user;
-    console.log(user)
+    console.log(user);
   }
 
-  let count = 0
+  let count = 0;
+
+  const [updateUser, { error }] = useMutation(UPDATE_USER);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      if(firstName === ''){
+        setFirstName(user.firstName)
+      }
+      if(lastName === ''){
+        setLastName(user.lastName)
+      }
+      if(email === ''){
+        setEmail(/*user.email*/ 'email@fakemail.com')
+      }
+      if(password === ''){
+        setPassword(/*user.password*/ 'password12345')
+      }
+      if(addBitcoin === ''){
+        setAddBitcoin(0)
+      }else {
+        setAddBitcoin(user.bitcoin+addBitcoin)
+      }
+      
+      const { data } = await updateUser({
+        variables: { firstName, lastName, addBitcoin, email, password },
+      });
+
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -54,6 +92,11 @@ function OrderHistory() {
                     placeholder='last name'
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
+                  ></input>
+                  <input
+                    placeholder='add bitcoin'
+                    value={addBitcoin}
+                    onChange={(event) => setAddBitcoin(event.target.value)}
                   ></input>
                   <input
                     placeholder='email'
