@@ -18,7 +18,7 @@ function OrderHistory() {
     console.log(user)
   }
 
-
+  let count = 0
 
   return (
     <>
@@ -35,7 +35,10 @@ function OrderHistory() {
               <div>
                 <h3>{user.firstName} {user.lastName} Info</h3>
                 <h4>You have: {user.bitcoin} ฿</h4>
-                <h4>You have purchased: {user.orders[0].products.length} chocolate so far</h4>
+
+                <h4>You have purchased: {user.orders.forEach((order) => {
+                  order.products.forEach(() => count++)
+                })} {count} chocolate so far</h4>
                 <h4>You are at: # on the leaderboard</h4>
               </div>
 
@@ -46,22 +49,22 @@ function OrderHistory() {
                     placeholder='first name'
                     value={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
-                    ></input>
+                  ></input>
                   <input
                     placeholder='last name'
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
-                    ></input>
+                  ></input>
                   <input
                     placeholder='email'
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    ></input>
+                  ></input>
                   <input
                     placeholder='password'
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    ></input>
+                  ></input>
                   <div>
                     <button type='submit'>Submit</button>
                   </div>
