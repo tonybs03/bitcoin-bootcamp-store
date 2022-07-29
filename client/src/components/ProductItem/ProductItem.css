@@ -1,0 +1,41 @@
+.eachproduct {
+    width: 25%;
+    text-align: center;
+    border: 1px solid pink;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .eachproduct {
+      width: 100%;
+    }
+  }

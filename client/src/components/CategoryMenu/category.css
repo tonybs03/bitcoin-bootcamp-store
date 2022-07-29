@@ -1,0 +1,26 @@
+.category {
+    margin-top: 100px;
+    height: 100px;
+}
+
+.category h2 {
+    font-family: 'Raleway';
+    font-weight: bolder;
+}
+
+.category button {
+    margin: auto;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    transition: all 0.25s ease-in;
+    font-size: 15px;
+    font-family: 'Raleway';
+    font-weight: bolder;
+    background-color: pink;
+}
+
+.category button:hover {
+    box-shadow: 3px 3px 10px grey;
+    color: rgb(117, 95, 65);
+    font-size: 21px;
+}
