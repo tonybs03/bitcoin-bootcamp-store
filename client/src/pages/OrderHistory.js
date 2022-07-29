@@ -62,18 +62,15 @@ function OrderHistory() {
     <>
       <div className="container my-1">
         <Link to="/">← Back to Products</Link>
-
         {user ? (
           <>
-            <h2>
+            <h2><b>
               Welcome {user.firstName} {user.lastName}
-            </h2>
-
+            </b></h2>
             <div className='flex-row'>
               <div>
-                <h3>{user.firstName} {user.lastName} Info</h3>
-                <h4>You have: {user.bitcoin} ฿</h4>
-
+                <h3><u><b>User Information</b></u></h3>
+                <h4>Bitcoin wallet: ฿{user.firstName}</h4>
                 <h4>Total orders placed: {user.orders.forEach((order) => {
                   order.products.forEach(() => count++)
                 })} {count}</h4>
@@ -81,7 +78,7 @@ function OrderHistory() {
               </div>
 
               <div>
-                <h3>Update Information</h3>
+                <h3><u><b>Update Information</b></u></h3>
                 <form>
                   <input
                     placeholder='first name'
@@ -116,7 +113,7 @@ function OrderHistory() {
               </div>
             </div>
 
-            <h3> Order History </h3>
+            <h3><u><b> Order History </b></u></h3>
 
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
@@ -131,7 +128,7 @@ function OrderHistory() {
                         <p>{name}</p>
                       </Link>
                       <div>
-                        <span>{price} ฿</span>
+                        <span>฿{price}</span>
                       </div>
                     </div>
                   ))}
