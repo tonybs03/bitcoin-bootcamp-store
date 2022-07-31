@@ -1,8 +1,18 @@
 .eachproduct {
-    width: 25%;
+    border-radius: 10px;
+    width: 24%;
     text-align: center;
-    border: 1px solid pink;
+    margin-bottom: 10px;
+    transition: all 0.3s ease-in;
 }
+
+.eachproduct:hover {
+  width: 25%;
+  box-shadow: 5px 5px 10px rgb(98, 126, 129);
+  border: 1px solid rgba(47, 175, 179, 0.466);
+}
+
+
 
 
 

@@ -43,13 +43,16 @@ function ProductItem(item) {
   return (
     <div className="px-1 py-1 eachproduct">
       <Link to={`/products/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
-        <p>{name}</p>
+        <div style={{width:"100%", aspectRatio:"1", display:'flex', alignItems:'center'}}>
+          <img alt={name} src={`/images/${image}`} style={{width:"100%"}}/>
+        </div>
       </Link>
-      <div>
+      <Link to={`/products/${_id}`}>
+        <div style={{height: "70px"}}>
+          <p style={{textDecoration:"none", fontFamily:"Raleway"}}>{name}</p>
+        </div>
+      </Link>  
+      <div style={{textDecoration:"none", fontFamily:"Raleway", fontWeight:"bolder"}}>
         <span><b>฿{price}</b></span>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
       </div>
