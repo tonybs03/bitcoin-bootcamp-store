@@ -7,12 +7,15 @@ import { QUERY_USER } from '../utils/queries';
 import { useMutation } from '@apollo/client';
 import {UPDATE_USER} from '../utils/mutations'
 
+import Auth from '../utils/auth';
+
 function OrderHistory() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [addBitcoin, setAddBitcoin] = useState('')
+  const [bitcoin, setBitcoin] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [updateUser] = useMutation(UPDATE_USER);
 
   const { data } = useQuery(QUERY_USER);
   let user;
@@ -24,7 +27,6 @@ function OrderHistory() {
 
   let count = 0;
 
-  const [updateUser, { error }] = useMutation(UPDATE_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -42,19 +44,25 @@ function OrderHistory() {
       if(password === ''){
         setPassword(/*user.password*/ 'password12345')
       }
-      if(addBitcoin === ''){
-        setAddBitcoin(0)
+      if(bitcoin === ''){
+        setBitcoin(0)
       }else {
-        setAddBitcoin(user.bitcoin+addBitcoin)
+        setBitcoin(user.bitcoin+parseInt(bitcoin))
       }
-      
-      const { data } = await updateUser({
-        variables: { firstName, lastName, addBitcoin, email, password },
+
+      const {data} = await updateUser({
+        variables: {
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+          bitcoin: parseInt(bitcoin),
+        },
       });
 
       window.location.reload();
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
     }
   };
 
@@ -70,7 +78,7 @@ function OrderHistory() {
             <div className='flex-row'>
               <div>
                 <h3><u><b>User Information</b></u></h3>
-                <h4>Bitcoin wallet: ฿{user.firstName}</h4>
+                <h4>Bitcoin wallet: ฿{user.bitcoin}</h4>
                 <h4>Total orders placed: {user.orders.forEach((order) => {
                   order.products.forEach(() => count++)
                 })} {count}</h4>
@@ -79,7 +87,7 @@ function OrderHistory() {
 
               <div>
                 <h3><u><b>Update Information</b></u></h3>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                   <input
                     placeholder='first name'
                     value={firstName}
@@ -92,8 +100,8 @@ function OrderHistory() {
                   ></input>
                   <input
                     placeholder='add bitcoin'
-                    value={addBitcoin}
-                    onChange={(event) => setAddBitcoin(event.target.value)}
+                    value={bitcoin}
+                    onChange={(event) => setBitcoin(event.target.value)}
                   ></input>
                   <input
                     placeholder='email'

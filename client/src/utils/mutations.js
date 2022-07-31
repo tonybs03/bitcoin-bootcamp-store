@@ -35,12 +35,14 @@ export const ADD_USER = gql`
     $lastName: String!
     $email: String!
     $password: String!
+    $bitcoin: Int!
   ) {
     addUser(
       firstName: $firstName
       lastName: $lastName
       email: $email
       password: $password
+      bitcoin: $bitcoin
     ) {
       token
       user {
@@ -61,6 +63,7 @@ export const UPDATE_USER = gql`
     updateUser (
       firstName: $firstName
       lastName: $lastName
+      bitcoin: $bitcoin
       email: $email
       password: $password
     )
