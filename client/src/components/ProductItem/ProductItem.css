@@ -12,6 +12,18 @@
   border: 1px solid rgba(47, 175, 179, 0.466);
 }
 
+.eachproduct button {
+  font-family: 'Raleway';
+  font-weight: bolder;
+  border: 1px solid rgba(47, 175, 179, 0.466);
+  background-color: rgba(0, 247, 255, 0.116);
+  transition: all 0.3s ease-in;
+}
+
+.eachproduct button:hover {
+  box-shadow: 5px 5px 10px rgb(98, 126, 129); 
+  background-color: rgba(0, 247, 255, 0.493);
+}
 
 
 

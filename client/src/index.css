@@ -202,10 +202,25 @@ input:focus {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 768px) {
-  /* .card {
-    width: 100%;
-  } */
+.pdetails p button {
+  /* border: 1px solid rgba(47, 175, 179, 0.466); */
+  background-color: rgba(0, 169, 175, 0.363);
+  transition: all 0.3s ease-in;
+  font-family: "Raleway";
+  font-weight: bolder;
+  width: 60%;
+}
+
+.pdetails p button:hover:enabled {
+  box-shadow: 5px 5px 10px rgb(98, 126, 129); 
+  background-color: rgba(0, 247, 255, 0.493);
+}
+
+@media screen and (max-width: 860px) {
+  .pdetails p button {
+    width: 166px;
+  }
+  
 }
 
 

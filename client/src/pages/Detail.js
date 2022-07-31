@@ -85,27 +85,32 @@ function Detail() {
     <>
       {currentProduct && cart ? (
         <div className="container my-1">
-          <Link to="/">← Back to Products</Link>
 
-          <h2>{currentProduct.name}</h2>
+          <div style={{ width: '100%', fontFamily: 'Raleway', fontWeight: 'bolder' }}>
+            <Link to="/">← Back to Products</Link>
+          </div>
 
-          <p>{currentProduct.description}</p>
-
-          <p>
-            <strong>Price:</strong>฿{currentProduct.price}{' '}
-            <button onClick={addToCart}>Add to Cart</button>
-            <button
-              disabled={!cart.find((p) => p._id === currentProduct._id)}
-              onClick={removeFromCart}
-            >
-              Remove from Cart
-            </button>
-          </p>
-
-          <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
-          />
+          <div className='pdetails' style={{ display: 'flex', justifyContent:"space-between" }}>
+            <div style={{ width: '58%' }}>
+              <img
+                src={`/images/${currentProduct.image}`}
+                alt={currentProduct.name}
+              />
+            </div>
+            <div style={{ width: '38%', fontFamily: 'Raleway', fontWeight: 'bolder' }}>
+              <h2 style={{ fontFamily: 'Raleway', fontWeight: 'bolder' }}>{currentProduct.name}</h2>
+              <p>{currentProduct.description}</p>
+              <p><strong>Price:</strong> ฿ {currentProduct.price}{' '}</p>
+              <p><button onClick={addToCart}>Add to Cart</button></p>
+              <p><button
+                disabled={!cart.find((p) => p._id === currentProduct._id)}
+                onClick={removeFromCart}
+              >
+                Remove from Cart
+              </button>
+              </p>
+            </div>
+          </div>
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
