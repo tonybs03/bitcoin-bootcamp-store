@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -31,38 +31,23 @@ function OrderHistory() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    let updateFirstName = firstName || user.firstName
+    let updateLastName = lastName || user.lastName
+    let updateBitcoin = (user.bitcoin + parseInt(bitcoin)) || user.bitcoin
+    let updateEmail = email || user.email
     try {
-      if(firstName === ''){
-        setFirstName(user.firstName)
-      }
-      if(lastName === ''){
-        setLastName(user.lastName)
-      }
-      if(email === ''){
-        setEmail(/*user.email*/ 'email@fakemail.com')
-      }
-      if(password === ''){
-        setPassword(/*user.password*/ 'password12345')
-      }
-      if(bitcoin === ''){
-        setBitcoin(0)
-      }else {
-        setBitcoin(user.bitcoin+parseInt(bitcoin))
-      }
-
       const {data} = await updateUser({
         variables: {
-          email: email,
-          password: password,
-          firstName: firstName,
-          lastName: lastName,
-          bitcoin: parseInt(bitcoin),
+          email: updateEmail,
+          firstName: updateFirstName,
+          lastName: updateLastName,
+          bitcoin: updateBitcoin,
         },
       });
 
       window.location.reload();
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
     }
   };
 
@@ -91,27 +76,30 @@ function OrderHistory() {
                   <input
                     placeholder='first name'
                     value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
+                    onChange={(event) => {
+                      setFirstName(event.target.value)
+                    }}
                   ></input>
                   <input
                     placeholder='last name'
                     value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
+                    onChange={(event) => {
+                      setLastName(event.target.value)
+                    }}
                   ></input>
                   <input
                     placeholder='add bitcoin'
                     value={bitcoin}
-                    onChange={(event) => setBitcoin(event.target.value)}
+                    onChange={(event) => {
+                      setBitcoin(event.target.value)
+                    }}
                   ></input>
                   <input
                     placeholder='email'
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                  ></input>
-                  <input
-                    placeholder='password'
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
+                    onChange={(event) => {
+                      setEmail(event.target.value)
+                    }}
                   ></input>
                   <div>
                     <button type='submit'>Submit</button>
