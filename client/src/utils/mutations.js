@@ -35,12 +35,14 @@ export const ADD_USER = gql`
     $lastName: String!
     $email: String!
     $password: String!
+    $bitcoin: Int!
   ) {
     addUser(
       firstName: $firstName
       lastName: $lastName
       email: $email
       password: $password
+      bitcoin: $bitcoin
     ) {
       token
       user {
@@ -51,17 +53,13 @@ export const ADD_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUser(
-    $firstName: String!
-    $lastName: String!
-    $bitcoin: Int!
-    $email: String!
-    $password: String!
-  ){
-    updateUser (
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      password: $password
-    )
-  }`
+mutation Mutation($firstName: String, $lastName: String, $bitcoin: Int, $email: String) {
+  updateUser(firstName: $firstName, lastName: $lastName, bitcoin: $bitcoin, email: $email) {
+    _id
+    firstName
+    lastName
+    email
+    bitcoin
+  }
+}
+  `;

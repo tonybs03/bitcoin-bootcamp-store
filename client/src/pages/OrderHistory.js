@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -7,12 +7,15 @@ import { QUERY_USER } from '../utils/queries';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../utils/mutations'
 
+import Auth from '../utils/auth';
+
 function OrderHistory() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [addBitcoin, setAddBitcoin] = useState('')
+  const [bitcoin, setBitcoin] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [updateUser] = useMutation(UPDATE_USER);
 
   const { data } = useQuery(QUERY_USER);
   let user;
@@ -24,32 +27,22 @@ function OrderHistory() {
 
   let count = 0;
 
-  const [updateUser, { error }] = useMutation(UPDATE_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    let updateFirstName = firstName || user.firstName
+    let updateLastName = lastName || user.lastName
+    let updateBitcoin = (user.bitcoin + parseInt(bitcoin)) || user.bitcoin
+    let updateEmail = email || user.email
     try {
-      if (firstName === '') {
-        setFirstName(user.firstName)
-      }
-      if (lastName === '') {
-        setLastName(user.lastName)
-      }
-      if (email === '') {
-        setEmail(/*user.email*/ 'email@fakemail.com')
-      }
-      if (password === '') {
-        setPassword(/*user.password*/ 'password12345')
-      }
-      if (addBitcoin === '') {
-        setAddBitcoin(0)
-      } else {
-        setAddBitcoin(user.bitcoin + addBitcoin)
-      }
-
-      const { data } = await updateUser({
-        variables: { firstName, lastName, addBitcoin, email, password },
+      const {data} = await updateUser({
+        variables: {
+          email: updateEmail,
+          firstName: updateFirstName,
+          lastName: updateLastName,
+          bitcoin: updateBitcoin,
+        },
       });
 
       window.location.reload();
@@ -67,39 +60,46 @@ function OrderHistory() {
             <h2 style={{marginTop:"30px"}}><b>
               Welcome {user.firstName} {user.lastName} {}
             </b></h2>
-            <div className='flex-row' style={{marginTop:"30px"}}>
-              <div className='update-into'>
+            <div className='flex-row'>
+              <div>
+                <h3><u><b>User Information</b></u></h3>
+                <h4>Bitcoin wallet: ฿{user.bitcoin}</h4>
+                <h4>Total orders placed: {user.orders.forEach((order) => {
+                  order.products.forEach(() => count++)
+                })} {count}</h4>
+                <h4>You are at: # on the leaderboard</h4>
+              </div>
+
+              <div>
                 <h3><u><b>Update Information</b></u></h3>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                   <input
                     placeholder='first name'
                     value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
-                    style={{marginTop:"15px", width:"240px"}}
+                    onChange={(event) => {
+                      setFirstName(event.target.value)
+                    }}
                   ></input>
                   <input
                     placeholder='last name'
                     value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
-                    style={{marginTop:"15px", width:"240px"}}
+                    onChange={(event) => {
+                      setLastName(event.target.value)
+                    }}
                   ></input>
                   <input
                     placeholder='add bitcoin'
-                    value={addBitcoin}
-                    onChange={(event) => setAddBitcoin(event.target.value)}
-                    style={{marginTop:"15px", width:"240px"}}
+                    value={bitcoin}
+                    onChange={(event) => {
+                      setBitcoin(event.target.value)
+                    }}
                   ></input>
                   <input
                     placeholder='email'
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    style={{marginTop:"15px", width:"240px"}}
-                  ></input>
-                  <input
-                    placeholder='password'
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    style={{marginTop:"15px", width:"240px"}}
+                    onChange={(event) => {
+                      setEmail(event.target.value)
+                    }}
                   ></input>
                   <div>
                     <button type='submit' style={{marginTop:"15px"}}>Submit</button>
