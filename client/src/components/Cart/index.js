@@ -7,8 +7,9 @@ import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
-import './style.css';
+import './cart.css';
 import { Link } from "react-router-dom";
+import { HiShoppingCart } from 'react-icons/hi';
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -65,7 +66,7 @@ const Cart = () => {
     return (
       <div className="cart-closed" onClick={toggleCart}>
         <span role="img" aria-label="trash">
-          🛒
+          <HiShoppingCart className='giticon' />
         </span>
       </div>
     );
@@ -89,16 +90,16 @@ const Cart = () => {
             {Auth.loggedIn() ? (
               // <button onClick={submitCheckout}>Checkout</button>
               <Link to="/success">
-              Checkout
-            </Link>
+                Checkout
+              </Link>
             ) : (
-              <span>(log in to check out)</span>
+              <span style={{ fontSize: '18px', width: '100%' }}>(log in to check out)</span>
             )}
           </div>
         </div>
       ) : (
         <h3>
-          <span role="img" aria-label="shocked">
+          <span className='shake' lrole="img" aria-label="shocked">
             😱
           </span>
           You haven't added anything to your cart yet!

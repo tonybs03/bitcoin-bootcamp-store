@@ -1,6 +1,6 @@
 .category {
     margin-top: 100px;
-    height: 100px;
+    height: 130px;
 }
 
 .category h2 {
@@ -21,6 +21,6 @@
 
 .category button:hover {
     box-shadow: 3px 3px 10px grey;
-    color: rgb(117, 95, 65);
+    color: var(--tertiary);
     font-size: 21px;
 }
