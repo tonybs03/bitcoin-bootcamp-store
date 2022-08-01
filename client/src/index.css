@@ -239,6 +239,10 @@ button[type="submit"]:hover {
   background-color: rgba(0, 247, 255, 0.493);
 }
 
+.update-info {
+  width: 60%;
+}
+
 @media screen and (max-width: 860px) {
   .pdetails p button {
     width: 166px;

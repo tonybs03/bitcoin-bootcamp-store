@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
 import { useMutation } from '@apollo/client';
-import {UPDATE_USER} from '../utils/mutations'
+import { UPDATE_USER } from '../utils/mutations'
 
 function OrderHistory() {
   const [firstName, setFirstName] = useState('');
@@ -30,24 +30,24 @@ function OrderHistory() {
     event.preventDefault();
 
     try {
-      if(firstName === ''){
+      if (firstName === '') {
         setFirstName(user.firstName)
       }
-      if(lastName === ''){
+      if (lastName === '') {
         setLastName(user.lastName)
       }
-      if(email === ''){
+      if (email === '') {
         setEmail(/*user.email*/ 'email@fakemail.com')
       }
-      if(password === ''){
+      if (password === '') {
         setPassword(/*user.password*/ 'password12345')
       }
-      if(addBitcoin === ''){
+      if (addBitcoin === '') {
         setAddBitcoin(0)
-      }else {
-        setAddBitcoin(user.bitcoin+addBitcoin)
+      } else {
+        setAddBitcoin(user.bitcoin + addBitcoin)
       }
-      
+
       const { data } = await updateUser({
         variables: { firstName, lastName, addBitcoin, email, password },
       });
@@ -64,11 +64,49 @@ function OrderHistory() {
         <Link to="/">← Back to Products</Link>
         {user ? (
           <>
-            <h2><b>
-              Welcome {user.firstName} {user.lastName}
+            <h2 style={{marginTop:"30px"}}><b>
+              Welcome {user.firstName} {user.lastName} {}
             </b></h2>
-            <div className='flex-row'>
-              <div>
+            <div className='flex-row' style={{marginTop:"30px"}}>
+              <div className='update-into'>
+                <h3><u><b>Update Information</b></u></h3>
+                <form>
+                  <input
+                    placeholder='first name'
+                    value={firstName}
+                    onChange={(event) => setFirstName(event.target.value)}
+                    style={{marginTop:"15px", width:"240px"}}
+                  ></input>
+                  <input
+                    placeholder='last name'
+                    value={lastName}
+                    onChange={(event) => setLastName(event.target.value)}
+                    style={{marginTop:"15px", width:"240px"}}
+                  ></input>
+                  <input
+                    placeholder='add bitcoin'
+                    value={addBitcoin}
+                    onChange={(event) => setAddBitcoin(event.target.value)}
+                    style={{marginTop:"15px", width:"240px"}}
+                  ></input>
+                  <input
+                    placeholder='email'
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    style={{marginTop:"15px", width:"240px"}}
+                  ></input>
+                  <input
+                    placeholder='password'
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    style={{marginTop:"15px", width:"240px"}}
+                  ></input>
+                  <div>
+                    <button type='submit' style={{marginTop:"15px"}}>Submit</button>
+                  </div>
+                </form>
+              </div>
+              <div className='user-info' style={{width:"40%"}}>
                 <h3><u><b>User Information</b></u></h3>
                 <h4>Bitcoin wallet: ฿{user.firstName}</h4>
                 <h4>Total orders placed: {user.orders.forEach((order) => {
@@ -76,43 +114,10 @@ function OrderHistory() {
                 })} {count}</h4>
                 <h4>You are at: # on the leaderboard</h4>
               </div>
-
-              <div>
-                <h3><u><b>Update Information</b></u></h3>
-                <form>
-                  <input
-                    placeholder='first name'
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
-                  ></input>
-                  <input
-                    placeholder='last name'
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
-                  ></input>
-                  <input
-                    placeholder='add bitcoin'
-                    value={addBitcoin}
-                    onChange={(event) => setAddBitcoin(event.target.value)}
-                  ></input>
-                  <input
-                    placeholder='email'
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                  ></input>
-                  <input
-                    placeholder='password'
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                  ></input>
-                  <div>
-                    <button type='submit'>Submit</button>
-                  </div>
-
-                </form>
-              </div>
             </div>
-
+            <br/>
+            <br/>
+            <br/>
             <h3><u><b> Order History </b></u></h3>
 
             {user.orders.map((order) => (
@@ -123,11 +128,11 @@ function OrderHistory() {
                 <div className="flex-row">
                   {order.products.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
-                      <Link to={`/products/${_id}`}>
+                      <Link to={`/products/${_id}`} style={{border:"3px solid pink", width: '30%'}}>
                         <img alt={name} src={`/images/${image}`} />
-                        <p>{name}</p>
                       </Link>
                       <div>
+                        <p>{name}</p>
                         <span>฿{price}</span>
                       </div>
                     </div>
