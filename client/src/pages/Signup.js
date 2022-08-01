@@ -16,7 +16,7 @@ function Signup(props) {
         password: formState.password,
         firstName: formState.firstName,
         lastName: formState.lastName,
-        bitcoin: formState.bitcoin,
+        bitcoin: parseInt(formState.bitcoin),
       },
     });
     const token = mutationResponse.data.addUser.token;
