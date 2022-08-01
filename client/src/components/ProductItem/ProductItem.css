@@ -8,23 +8,28 @@
 
 .eachproduct:hover {
   width: 25%;
-  box-shadow: 5px 5px 10px rgb(98, 126, 129);
-  border: 1px solid rgba(47, 175, 179, 0.466);
+  box-shadow: 5px 5px 10px rgb(98, 120, 129);
+  border: 1px solid rgb(192, 219, 229);
 }
 
 .eachproduct button {
   font-family: 'Raleway';
   font-weight: bolder;
   border: 1px solid rgba(47, 175, 179, 0.466);
-  background-color: rgba(0, 247, 255, 0.116);
+  background-color: rgba(0, 174, 255, 0.116);
   transition: all 0.3s ease-in;
 }
 
 .eachproduct button:hover {
   box-shadow: 5px 5px 10px rgb(98, 126, 129); 
-  background-color: rgba(0, 247, 255, 0.493);
+  background-color: rgb(192, 219, 229);
 }
 
+@media screen and (max-width: 766px) {
+  .eachproduct:hover {
+    width: 100%;
+  }
+}
 
 
 

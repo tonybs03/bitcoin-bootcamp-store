@@ -50,7 +50,7 @@ function Nav() {
         <br/>
         <div className="headermain">
           <Link to="/">
-            <img className="bitcoin" src="bitcoin.png" alt="bitcoin ico" />
+            <img className="bitcoin" src="bitcoin.png" alt="bitcoin" />
           </Link>
           <p>Bitcoin Bootcamp Store</p>
         </div>

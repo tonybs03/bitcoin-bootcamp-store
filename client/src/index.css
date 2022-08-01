@@ -40,8 +40,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 500;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
   margin: 5px 0;
   line-height: 1.25;
 }
@@ -120,21 +120,44 @@ form {
 }
 
 input {
+  background-color: rgba(0, 255, 255, 0.123);
+  font-family: "Raleway";
+  font-weight: 900;
   font-size: 1rem;
   padding: 0.25rem;
-  border: 1px solid var(--dark);
+  border: 3px solid pink;
   outline: none;
   border-radius: 3px;
-  transition: box-shadow 0.2s;
+  transition: all 0.25s ease-in;
 }
 
 input:focus {
-  border: 1px solid var(--secondary);
+  border: 3px solid pink;
   box-shadow: 0 0 .25rem rgba(0, 0, 0, .5);
+}
+
+button[type="submit"] {
+  margin: auto;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  transition: all 0.25s ease-in;
+  font-size: 15px;
+  font-family: 'Raleway';
+  font-weight: bolder;
+  background-color: pink;
+}
+
+button[type="submit"]:hover {
+  font-size: 18px;
+  box-shadow: 3px 3px 10px grey;
+  color: var(--tertiary);
+  /* font-size: 21px;; */
 }
 
 .container {
   /* border: 3px solid black; */
+  font-family: "Raleway";
+  font-weight: "bolder";
   width: 85%;
   max-width: 1200px;
   margin-left: auto;

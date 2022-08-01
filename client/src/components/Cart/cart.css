@@ -1,0 +1,143 @@
+.cart {
+  font-family: "Raleway";
+  font-weight: bolder;
+  transition: all 0.1s ease-in;
+  position: fixed;
+  top: 0.5%;
+  right: 0.2%;
+  min-width: 20%;
+  max-width: 30%;
+  max-height: 60%;
+  background-color: rgb(192, 219, 229);
+  overflow: auto;
+  padding: .5rem;
+  box-shadow: 5px 5px 10px rgb(98, 126, 129);
+  border-radius: .5rem;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(252, 141, 159, 0.295);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.cart h2 {
+  font-family: "Raleway";
+  font-weight:bolder;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--dark);
+  padding-bottom: .5rem;
+  margin: 1rem 0;
+}
+
+.cart h3 {
+  font-family: "Raleway";
+  font-weight:bolder;
+  font-size: 1.0rem;
+  border-bottom: 1px solid var(--dark);
+  padding-bottom: .5rem;
+  margin: 1rem 0;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(3px, 0);
+  }
+  50% {
+    transform: translate(-3px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 150ms;
+  animation-iteration-count: infinite;
+  display: inline-block;
+}
+
+.cart .close {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  cursor: pointer;
+  color: var(--tertiary);
+}
+
+.cart .close:hover {
+  text-decoration: underline;
+}
+
+.cart-closed {
+  transition: all 0.25s ease-in;
+  position: fixed;
+  top: 0.5%;
+  right: 0.2%;
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: rgb(192, 219, 229);
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-top: 7px;
+  /* padding: .25rem; */
+  width: 50px;
+  height: 50px;
+}
+
+.cart-closed:hover {
+  background-color: rgb(192, 219, 229);
+  box-shadow: 5px 5px 10px rgb(98, 126, 129); 
+  cursor: pointer;
+  transform: rotate(12deg);
+}
+
+.cart-closed span {
+  cursor: pointer;
+}
+
+.cart-closed span:hover {
+  cursor: pointer;
+}
+
+.cart img {
+  width: 70px;
+  margin-right: 1rem;
+}
+
+.cart input {
+  width: 50px;
+  padding: 0;
+  margin: 0 .5rem 1rem 0;
+}
+
+@media screen and (max-width: 768px) {
+  .cart {
+    margin-bottom: 30px;
+    top: 0;
+    right: 0;
+    position: relative;
+    max-width: 100%;
+    max-height: auto;
+  }
+
+  .cart-closed {
+    position: relative;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+}

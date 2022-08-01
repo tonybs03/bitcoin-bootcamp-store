@@ -32,38 +32,39 @@ function Login(props) {
   return (
     <div className="container my-1">
       <Link to="/signup">← Go to Signup</Link>
-
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        {error ? (
-          <div>
-            <p className="error-text">The provided credentials are incorrect</p>
+      <div style={{marginTop:"60px", marginBottom:"60px"}}>
+        <h2>Login</h2>
+        <form onSubmit={handleFormSubmit} style={{ fontFamily: "Raleway", fontWeight: "bolder" }}>
+          <div className="flex-row space-between my-2" style={{width:"400px"}}>
+            <label htmlFor="email">Email address:</label>
+            <input
+              placeholder="youremail@test.com"
+              name="email"
+              type="email"
+              id="email"
+              onChange={handleChange}
+            />
           </div>
-        ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+          <div className="flex-row space-between my-2" style={{width:"400px"}}>
+            <label htmlFor="pwd">Password:</label>
+            <input
+              placeholder="******"
+              name="password"
+              type="password"
+              id="pwd"
+              onChange={handleChange}
+            />
+          </div>
+          {error ? (
+            <div>
+              <p className="error-text">The provided credentials are incorrect</p>
+            </div>
+          ) : null}
+          <div className="flex-row flex-end" style={{width:"400px"}}>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
