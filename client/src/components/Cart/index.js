@@ -7,14 +7,15 @@ import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './cart.css';
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { HiShoppingCart } from 'react-icons/hi';
 import { UPDATE_USER } from '../../utils/mutations'
 
-
 const Cart = () => {
-  const [state, dispatch] = useStoreContext();
 
+  const [state, dispatch] = useStoreContext();
+  const navigate = useNavigate();
+  
   const { data } = useQuery(QUERY_USER)
   let user;
   if (data) {
@@ -50,6 +51,7 @@ const Cart = () => {
 
   async function submitCheckout(event) {
     event.stopPropagation()
+    console.log("HIT ME BABY ONE MORE TIME")
     let updateFirstName = user.firstName
     let updateLastName = user.lastName
     let updateBitcoin = (user.bitcoin - sum)
@@ -64,10 +66,11 @@ const Cart = () => {
         },
       });
 
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.error(err);
     }
+    navigate("/success");
   }
 
   if (!state.cartOpen) {
@@ -103,7 +106,7 @@ const Cart = () => {
             {!Auth.loggedIn() ? 
               (
               <span style={{ fontSize: '18px', width: '100%' }}>(log in to check out)</span>
-              ) : (user.bitcoin-sum > 0 ? (<Link to="/success"><button onClick={submitCheckout}>Checkout</button></Link>
+              ) : (user.bitcoin-sum > 0 ? (<button onClick={submitCheckout}>Checkout</button>
               ) : (<span style={{ fontSize: '18px', width: '100%' }}>(Not enough bitcoins!)</span>)
               ) 
             }
