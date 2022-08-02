@@ -9,15 +9,15 @@ import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './cart.css';
 import { Link } from "react-router-dom";
 import { HiShoppingCart } from 'react-icons/hi';
-import {UPDATE_USER} from '../../utils/mutations'
+import { UPDATE_USER } from '../../utils/mutations'
 
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
 
-  const {data} = useQuery(QUERY_USER)
+  const { data } = useQuery(QUERY_USER)
   let user;
-  if (data){
+  if (data) {
     user = data.user
   }
 
@@ -48,14 +48,14 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
-  async function submitCheckout (event) {
+  async function submitCheckout(event) {
     event.stopPropagation()
     let updateFirstName = user.firstName
     let updateLastName = user.lastName
     let updateBitcoin = (user.bitcoin - sum)
     let updateEmail = user.email
     try {
-      const {data} = await updateUser({
+      const { data } = await updateUser({
         variables: {
           email: updateEmail,
           firstName: updateFirstName,
@@ -85,7 +85,13 @@ const Cart = () => {
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
-      <h2>Shopping Cart Wallet: ฿{user.bitcoin}</h2>
+      {Auth.loggedIn() ?
+        (
+          <h2>Shopping Cart Wallet: ฿{user.bitcoin}</h2>
+        ) : (
+          <h2>Shopping Cart</h2>
+        )
+      }
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
@@ -94,15 +100,13 @@ const Cart = () => {
 
           <div className="flex-row space-between">
             <strong>Total: ฿{calculateTotal()}</strong>
-
-            {Auth.loggedIn() ? (
-              // <button onClick={submitCheckout}>Checkout</button>
-              <Link to="/success">
-                <button onClick={submitCheckout}>Checkout</button>
-              </Link>
-            ) : (
+            {!Auth.loggedIn() ? 
+              (
               <span style={{ fontSize: '18px', width: '100%' }}>(log in to check out)</span>
-            )}
+              ) : (user.bitcoin-sum > 0 ? (<Link to="/success"><button onClick={submitCheckout}>Checkout</button></Link>
+              ) : (<span style={{ fontSize: '18px', width: '100%' }}>(Not enough bitcoins!)</span>)
+              ) 
+            }
           </div>
         </div>
       ) : (
