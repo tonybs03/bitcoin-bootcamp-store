@@ -15,6 +15,7 @@ function OrderHistory() {
   const [lastName, setLastName] = useState('');
   const [bitcoin, setBitcoin] = useState('')
   const [email, setEmail] = useState('');
+  const [refresh, setRefresh] = useState(0);
   const [updateUser] = useMutation(UPDATE_USER);
 
   const { data } = useQuery(QUERY_USER);
@@ -46,7 +47,7 @@ function OrderHistory() {
         },
       });
 
-      window.location.reload();
+      setRefresh(Math.random());
     } catch (err) {
       console.error(err);
     }
