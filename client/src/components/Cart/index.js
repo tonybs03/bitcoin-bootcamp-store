@@ -50,7 +50,8 @@ const Cart = (props) => {
     return sum.toFixed(2);
   }
 
-  async function submitCheckout () {
+  async function submitCheckout (event) {
+    event.stopPropagation()
     let updateFirstName = props.firstName
     let updateLastName = props.lastName
     let updateBitcoin = (props.bitcoin - sum)
