@@ -105,14 +105,6 @@ function OrderHistory() {
                   </div>
                 </form>
               </div>
-              <div className='user-info' style={{width:"40%"}}>
-                <h3><u><b>User Information</b></u></h3>
-                <h4>Bitcoin wallet: ฿{user.firstName}</h4>
-                <h4>Total orders placed: {user.orders.forEach((order) => {
-                  order.products.forEach(() => count++)
-                })} {count}</h4>
-                <h4>You are at: # on the leaderboard</h4>
-              </div>
             </div>
             <br/>
             <br/>
