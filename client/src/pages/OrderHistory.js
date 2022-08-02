@@ -26,6 +26,7 @@ function OrderHistory() {
   }
 
   let count = 0;
+  let countp = 0;
 
 
   const handleFormSubmit = async (event) => {
@@ -60,17 +61,21 @@ function OrderHistory() {
             <h2 style={{marginTop:"30px"}}><b>
               Welcome {user.firstName} {user.lastName} {}
             </b></h2>
-            <div className='flex-row'>
-              <div>
+            <hr/>
+            <hr/>
+            <div className='flex-row space-between'>
+
+              <div className='user-info'>
                 <h3><u><b>User Information</b></u></h3>
-                <h4>Bitcoin wallet: ฿{user.bitcoin}</h4>
-                <h4>Total orders placed: {user.orders.forEach((order) => {
-                  order.products.forEach(() => count++)
-                })} {count}</h4>
-                <h4>You are at: # on the leaderboard</h4>
+                <h4 style={{width:"390px", marginTop:"15px"}}>Bitcoin wallet: ฿{user.bitcoin}</h4>
+                <h4 style={{width:"390px", marginTop:"15px"}}>Total orders placed: {user.orders.forEach((order) => {
+                  order.products.forEach(() => countp++)
+                })} {countp}</h4>
+                <h4 style={{width:"390px", marginTop:"15px"}}>Total orders placed: {user.orders.forEach(() => count++)} {count}</h4>
+                <h4 style={{width:"390px", marginTop:"15px"}}>You are at: #123 on the leaderboard</h4>
               </div>
 
-              <div>
+              <div className='update-info'>
                 <h3><u><b>Update Information</b></u></h3>
                 <form onSubmit={handleFormSubmit}>
                   <input
@@ -79,6 +84,7 @@ function OrderHistory() {
                     onChange={(event) => {
                       setFirstName(event.target.value)
                     }}
+                    style={{width:"240px", marginTop:"15px"}}
                   ></input>
                   <input
                     placeholder='last name'
@@ -86,6 +92,7 @@ function OrderHistory() {
                     onChange={(event) => {
                       setLastName(event.target.value)
                     }}
+                    style={{width:"240px", marginTop:"15px"}}
                   ></input>
                   <input
                     placeholder='add bitcoin'
@@ -93,6 +100,7 @@ function OrderHistory() {
                     onChange={(event) => {
                       setBitcoin(event.target.value)
                     }}
+                    style={{width:"240px", marginTop:"15px"}}
                   ></input>
                   <input
                     placeholder='email'
@@ -100,20 +108,21 @@ function OrderHistory() {
                     onChange={(event) => {
                       setEmail(event.target.value)
                     }}
+                    style={{width:"240px", marginTop:"15px"}}
                   ></input>
                   <div>
                     <button type='submit' style={{marginTop:"15px"}}>Submit</button>
                   </div>
                 </form>
               </div>
-              <div className='user-info' style={{width:"40%"}}>
+              {/* <div className='user-info' style={{width:"40%"}}>
                 <h3><u><b>User Information</b></u></h3>
                 <h4>Bitcoin wallet: ฿{user.firstName}</h4>
                 <h4>Total orders placed: {user.orders.forEach((order) => {
                   order.products.forEach(() => count++)
                 })} {count}</h4>
                 <h4>You are at: # on the leaderboard</h4>
-              </div>
+              </div> */}
             </div>
             <br/>
             <br/>
@@ -128,7 +137,7 @@ function OrderHistory() {
                 <div className="flex-row">
                   {order.products.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
-                      <Link to={`/products/${_id}`} style={{border:"3px solid pink", width: '30%'}}>
+                      <Link to={`/products/${_id}`}>
                         <img alt={name} src={`/images/${image}`} />
                       </Link>
                       <div>
