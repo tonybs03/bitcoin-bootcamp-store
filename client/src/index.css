@@ -239,13 +239,37 @@ button[type="submit"]:hover {
   background-color: rgba(0, 247, 255, 0.493);
 }
 
+.user-info {
+  border-radius: 10px 0 0 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  /* border: 3px solid black; */
+  width: 70%;
+}
+
 .update-info {
-  width: 60%;
+  border-radius: 0 10px 10px 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  /* border: 3px solid black; */
+  width: 30%;
 }
 
 @media screen and (max-width: 860px) {
   .pdetails p button {
     width: 166px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .user-info {
+    border-radius: 10px;
+    margin-bottom: 81px;
+    width: 100%;
+  }
+  .update-info {
+    border-radius: 10px;
+    width: 100%;
   }
   
 }
