@@ -87,6 +87,11 @@ const resolvers = {
       });
 
       return { session: session.id };
+    },
+    users: async (parent,args) => {
+      const users = await User.find({})
+      users.sort((a,b)=> b.bitcoin - a.bitcoin)
+      return users
     }
   },
   Mutation: {

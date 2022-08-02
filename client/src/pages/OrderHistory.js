@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Leaderboard from "../components/Leaderboard";
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -71,7 +72,7 @@ function OrderHistory() {
                   order.products.forEach(() => countp++)
                 })} {countp}</h4>
                 <h4 style={{width:"390px", marginTop:"15px"}}>Total orders placed: {user.orders.forEach(() => count++)} {count}</h4>
-                <h4 style={{width:"390px", marginTop:"15px"}}>You are at: #123 on the leaderboard</h4>
+                <Leaderboard _id={user._id}/>
               </div>
 
               <div className='update-info'>
