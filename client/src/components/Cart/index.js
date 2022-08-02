@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { QUERY_CHECKOUT } from '../../utils/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
@@ -12,20 +11,19 @@ import { Link } from "react-router-dom";
 import { HiShoppingCart } from 'react-icons/hi';
 import {UPDATE_USER} from '../../utils/mutations'
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-const Cart = (props) => {
+const Cart = () => {
   const [state, dispatch] = useStoreContext();
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  const {data} = useQuery(QUERY_USER)
+  let user;
+  if (data){
+    user = data.user
+  }
+
   const [updateUser] = useMutation(UPDATE_USER);
   let sum = 0;
-  useEffect(() => {
-    if (data) {
-      stripePromise.then((res) => {
-        res.redirectToCheckout({ sessionId: data.checkout.session });
-      });
-    }
-  }, [data]);
+
 
   useEffect(() => {
     async function getCart() {
@@ -52,10 +50,10 @@ const Cart = (props) => {
 
   async function submitCheckout (event) {
     event.stopPropagation()
-    let updateFirstName = props.firstName
-    let updateLastName = props.lastName
-    let updateBitcoin = (props.bitcoin - sum)
-    let updateEmail = props.email
+    let updateFirstName = user.firstName
+    let updateLastName = user.lastName
+    let updateBitcoin = (user.bitcoin - sum)
+    let updateEmail = user.email
     try {
       const {data} = await updateUser({
         variables: {
@@ -87,7 +85,7 @@ const Cart = (props) => {
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
-      <h2>Shopping Cart Wallet: ฿{props.bitcoin}</h2>
+      <h2>Shopping Cart Wallet: ฿{user.bitcoin}</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
