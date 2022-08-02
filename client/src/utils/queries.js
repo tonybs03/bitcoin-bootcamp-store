@@ -51,6 +51,7 @@ export const QUERY_CATEGORIES = gql`
 export const QUERY_USER = gql`
   {
     user {
+      _id
       firstName
       lastName
       email 
@@ -67,6 +68,14 @@ export const QUERY_USER = gql`
           image
         }
       }
+    }
+  }
+`;
+
+export const QUERY_USERS = gql`
+  {
+    users {
+      _id
     }
   }
 `;
