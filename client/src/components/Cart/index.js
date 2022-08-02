@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import CartItem from '../CartItem';
@@ -10,13 +10,15 @@ import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './cart.css';
 import { Link } from "react-router-dom";
 import { HiShoppingCart } from 'react-icons/hi';
+import {UPDATE_USER} from '../../utils/mutations'
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-const Cart = () => {
+const Cart = (props) => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
+  const [updateUser] = useMutation(UPDATE_USER);
+  let sum = 0;
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
@@ -41,25 +43,32 @@ const Cart = () => {
   }
 
   function calculateTotal() {
-    let sum = 0;
+    sum = 0;
     state.cart.forEach((item) => {
       sum += item.price * item.purchaseQuantity;
     });
     return sum.toFixed(2);
   }
 
-  function submitCheckout() {
-    const productIds = [];
+  async function submitCheckout () {
+    let updateFirstName = props.firstName
+    let updateLastName = props.lastName
+    let updateBitcoin = (props.bitcoin - sum)
+    let updateEmail = props.email
+    try {
+      const {data} = await updateUser({
+        variables: {
+          email: updateEmail,
+          firstName: updateFirstName,
+          lastName: updateLastName,
+          bitcoin: updateBitcoin,
+        },
+      });
 
-    state.cart.forEach((item) => {
-      for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
-      }
-    });
-
-    getCheckout({
-      variables: { products: productIds },
-    });
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   if (!state.cartOpen) {
@@ -77,7 +86,7 @@ const Cart = () => {
       <div className="close" onClick={toggleCart}>
         [close]
       </div>
-      <h2>Shopping Cart</h2>
+      <h2>Shopping Cart Wallet: ฿{props.bitcoin}</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
@@ -90,7 +99,7 @@ const Cart = () => {
             {Auth.loggedIn() ? (
               // <button onClick={submitCheckout}>Checkout</button>
               <Link to="/success">
-                Checkout
+                <button onClick={submitCheckout}>Checkout</button>
               </Link>
             ) : (
               <span style={{ fontSize: '18px', width: '100%' }}>(log in to check out)</span>
