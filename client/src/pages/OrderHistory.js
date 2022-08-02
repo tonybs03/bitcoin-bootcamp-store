@@ -46,7 +46,12 @@ function OrderHistory() {
         },
       });
 
-      window.location.reload();
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setBitcoin('')
+
+      //window.location.reload();
     } catch (err) {
       console.error(err);
     }
