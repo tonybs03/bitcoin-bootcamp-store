@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -14,7 +14,6 @@ function OrderHistory() {
   const [lastName, setLastName] = useState('');
   const [bitcoin, setBitcoin] = useState('')
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [updateUser] = useMutation(UPDATE_USER);
 
   const { data } = useQuery(QUERY_USER);
@@ -115,14 +114,6 @@ function OrderHistory() {
                   </div>
                 </form>
               </div>
-              {/* <div className='user-info' style={{width:"40%"}}>
-                <h3><u><b>User Information</b></u></h3>
-                <h4>Bitcoin wallet: ฿{user.firstName}</h4>
-                <h4>Total orders placed: {user.orders.forEach((order) => {
-                  order.products.forEach(() => count++)
-                })} {count}</h4>
-                <h4>You are at: # on the leaderboard</h4>
-              </div> */}
             </div>
             <br/>
             <br/>
