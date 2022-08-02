@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
@@ -14,7 +14,6 @@ function OrderHistory() {
   const [lastName, setLastName] = useState('');
   const [bitcoin, setBitcoin] = useState('')
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [updateUser] = useMutation(UPDATE_USER);
 
   const { data } = useQuery(QUERY_USER);

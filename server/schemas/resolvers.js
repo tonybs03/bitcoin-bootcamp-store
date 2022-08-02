@@ -137,7 +137,6 @@ const resolvers = {
 
       return { token, user };
     },
-    // updateUser: async (parent, {})
   }
 };
 
