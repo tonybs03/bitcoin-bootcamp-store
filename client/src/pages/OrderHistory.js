@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
 import { useMutation } from '@apollo/client';
-import { UPDATE_USER } from '../utils/mutations'
+import { UPDATE_USER, UPDATE_PRODUCT } from '../utils/mutations'
 
 import Auth from '../utils/auth';
 
@@ -16,6 +16,7 @@ function OrderHistory() {
   const [bitcoin, setBitcoin] = useState('')
   const [email, setEmail] = useState('');
   const [updateUser] = useMutation(UPDATE_USER);
+  const [updateProduct] = useMutation(UPDATE_PRODUCT);
 
   const { data } = useQuery(QUERY_USER);
   let user;
@@ -51,7 +52,6 @@ function OrderHistory() {
       setEmail('')
       setBitcoin('')
 
-      //window.location.reload();
     } catch (err) {
       console.error(err);
     }

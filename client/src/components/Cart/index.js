@@ -51,7 +51,6 @@ const Cart = () => {
 
   async function submitCheckout(event) {
     event.stopPropagation()
-    console.log("HIT ME BABY ONE MORE TIME")
     let updateFirstName = user.firstName
     let updateLastName = user.lastName
     let updateBitcoin = (user.bitcoin - sum)
