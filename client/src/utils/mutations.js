@@ -63,3 +63,10 @@ mutation Mutation($firstName: String, $lastName: String, $bitcoin: Int, $email: 
   }
 }
   `;
+
+export const UPDATE_PRODUCT = gql`
+mutation Mutation($inventory: Int, $id: ID){
+  updateProduct(_id:$id, quantity:$inventory){
+    quantity
+  }
+}`  
