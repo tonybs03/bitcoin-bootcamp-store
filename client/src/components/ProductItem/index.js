@@ -54,7 +54,6 @@ function ProductItem(item) {
       </Link>  
       <div style={{textDecoration:"none", fontFamily:"Raleway", fontWeight:"bolder"}}>
         <span><b>฿{price}</b></span>
-        <div>{quantity} {pluralize("item", quantity)} in stock</div>
       </div>
       <button onClick={addToCart}>Add to cart</button>
     </div>
